@@ -4,7 +4,10 @@
   "builds": [
     {
       "chipFamily": "ESP32",
-      "parts": [{ "path": "firmware/lilygo_epd47.bin", "offset": 0 }]
+      "parts": [
+        { "path": "firmware/lilygo_epd47.bin", "offset": 65536 },
+        { "path": "firmware/partitions.bin", "offset": 32768 }
+      ]
     }
   ]
 }
