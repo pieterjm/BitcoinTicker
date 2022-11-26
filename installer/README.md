@@ -1,5 +1,5 @@
-# Squeezelite-ESP32 Installer
+# BitcoinTicker installer
 
-This is a demo installer website for [Squeezelite-ESP32](https://github.com/sle118/squeezelite-esp32).
+This is the installer website for [BitcoinTicker](https://github.com/pieterjm/BitcoinTicker).
 
-[Visit installer website](https://paulusschoutsen.nl/squeezelite-esp32-install/)
+[Visit installer website](https://pieterjm.github.com/BitcoinTicker/installer/)
