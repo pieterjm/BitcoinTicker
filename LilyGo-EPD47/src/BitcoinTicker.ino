@@ -363,7 +363,7 @@ void setup()
 
     config.apid = "BitcoinTicker";
     config.psk = "";
-    config.hidden = 0;
+//    config.hidden = 0;
 
     framebuffer = (uint8_t *)ps_calloc(sizeof(uint8_t), EPD_WIDTH * EPD_HEIGHT / 2);
     if (!framebuffer) {
@@ -405,5 +405,10 @@ void loop()
     btn1.loop();
     btn2.loop();
     btn3.loop();
+
+  if ( Serial.available() > 0 ) {
+    int incomingByte = Serial.read();
+    Serial.println("data");
+  }
 
 }
