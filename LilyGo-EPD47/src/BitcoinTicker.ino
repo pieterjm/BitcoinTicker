@@ -17,6 +17,7 @@
 #include "manjaribold100.h"
 #include "Button2.h"
 #include <qrcode.h>
+#include <Preferences.h>
 
 #define DISPLAY_PRICE 0
 #define DISPLAY_BLOCKHEIGHT 1
@@ -56,7 +57,10 @@ Button2  btn3(BUTTON_3);
 #define XPOS_LEGEND 480
 #define XPOS_TICKER 0
 
-int display = DISPLAY_PRICE;  // the ticker to display initially
+Preferences preferences;
+int display = DISPLAY_PRICE;
+
+//int display = DISPLAY_PRICE;  // the ticker to display initially
 
 #if defined(CONFIG_IDF_TARGET_ESP32)
 #define SD_MISO             12
@@ -93,18 +97,6 @@ int32_t get_cursor_x(GFXfont *font,String l) {
     int32_t h = 0;
     get_text_bounds(font, l.c_str(), &x, &y, &x1, &y1, &w, &h, NULL);
     return 480 - w / 2;
-}
-
-void deleteAllCredentials() {
-  AutoConnectCredential credential;
-  station_config_t cfg;
-  uint8_t ent = credential.entries();
-
-  while (ent--) {
-    credential.load((int8_t)0, &cfg);    
-    credential.del((const char*)&cfg.ssid[0]);
- 
-  }
 }
 
 
@@ -191,10 +183,6 @@ void update_price()
       moscowtime = satsperusd.substring(0,2) + ":" + satsperusd.substring(2);
       
     }
-  } else if ( httpCode == -1 ) {
-    deleteAllCredentials();
-    delay(5000);
-    ESP.restart();
   }
   http.end();  
 }
@@ -314,6 +302,9 @@ void buttonPressed(Button2 &b)
   if (display >= DISPLAY_MAX ) {
     display = 0;
   }
+
+  preferences.putInt("display",display);
+
   update_display();    
 } 
 
@@ -384,7 +375,8 @@ void setup()
     portal.onDetect(handlePortalOnDetect);
     portal.begin();
     
-    
+    preferences.begin("BitcoinTicker", false); 
+    display = preferences.getInt("display",DISPLAY_PRICE);
 
     btn1.setPressedHandler(buttonPressed);
     btn2.setPressedHandler(buttonPressed);
@@ -392,7 +384,7 @@ void setup()
 
     
   
-  display = DISPLAY_PRICE;  
+
   update_and_display((void *)0);
   timer.every(120000, update_and_display);
   epd_poweroff_all();
@@ -405,10 +397,4 @@ void loop()
     btn1.loop();
     btn2.loop();
     btn3.loop();
-
-  if ( Serial.available() > 0 ) {
-    int incomingByte = Serial.read();
-    Serial.println("data");
-  }
-
 }

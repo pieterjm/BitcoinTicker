@@ -8,6 +8,9 @@ You can clone this repository and build a firmware image yourself. The repositor
 
 Running the ticker and configuring Wi-Fi is quite self explanatory. The Ticker tells you what to do.
 
+## Plans
+
+More freedom in display configuration. For example through the Gerty API of LNbits. 
 
 ## Comments, feedback, Donation
 
