@@ -10,7 +10,8 @@ Running the ticker and configuring Wi-Fi is quite self explanatory. The Ticker t
 
 ## Plans
 
-More freedom in display configuration. For example through the Gerty API of LNbits. 
+More freedom in display configuration. For example through the Gerty API of LNbits.
+JSON UI Schema? 
 
 ## Comments, feedback, Donation
 
