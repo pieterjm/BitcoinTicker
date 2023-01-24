@@ -55,6 +55,7 @@ Button2  btn3(BUTTON_3);
 #define SCREEN_HEIGHT 540
 #define SCREEN_MARGIN 50
 #define AREA_PADDING 20
+#define LINE_PADDING 10
 #define YPOS_LEGEND 150
 #define YPOS_TICKER 3800
 #define XPOS_LEGEND 480
@@ -110,14 +111,16 @@ int32_t get_cursor_x(GFXfont *font,String l,String position) {
 
 int getfontsize(int size) {
   switch ( size ) {
+    case 1:
     case 15:
-    return 16;
+      return 16;
+    case 5:
     case 32:
-    return 32;
+      return 32;
     case 80:
-    return 100;
+      return 100;
     default:
-    return 16;
+      return 16;
   }
 }
 
@@ -171,18 +174,21 @@ void update_gerty()
   }
   preferences.putString(CONFIG_HASH,hash);
   
-  DynamicJsonDocument jsobj(1024);
+  DynamicJsonDocument jsobj(2048);
   deserializeJson(jsobj,payload);
       
-  JsonArray arr = jsobj["screen"]["areas"][0];
+  JsonArray arr = jsobj["screen"]["areas"];
   int totalweight = 0;
-  for (JsonObject obj : arr ) {        
-    int size = getfontsize(obj["size"]);
-    String value = obj["value"].as<String>();
-    totalweight += FONT_FACTOR * size;
-    for(int i=0;(i<value.length());i++) {
-      if (value.charAt(i) == '\n') {
-        totalweight += FONT_FACTOR * size;  
+  for (JsonArray grarr: arr) {
+    for (JsonObject obj : grarr ) {        
+      int size = getfontsize(obj["size"]);
+      String value = obj["value"].as<String>();
+      totalweight += FONT_FACTOR * size;
+      for(int i=0;(i<value.length());i++) {
+        if (value.charAt(i) == '\n') {
+          totalweight += FONT_FACTOR * size;  
+          totalweight += LINE_PADDING;
+        }
       }
     }
     totalweight += AREA_PADDING;
@@ -193,33 +199,39 @@ void update_gerty()
   epd_poweron();
   clearepd();
   memset(framebuffer, 0xFF, EPD_WIDTH * EPD_HEIGHT / 2);    
-
-  for (JsonObject obj : arr ) {
-    String value = obj["value"];
-    String position = obj["position"];
-    int size = getfontsize(obj["size"]);
-    GFXfont *font = getFont(size);
+  
+  for (JsonArray grarr: arr) {    
+    for (JsonObject obj : grarr ) {
+    
+      String value = obj["value"];
+      String position = obj["position"];
+      int size = getfontsize(obj["size"]);
+      GFXfont *font = getFont(size);
           
-    int index = value.indexOf("\n");
-    while ( index != -1 ) {            
-      String sub = value.substring(0,index);
-      value = value.substring(index + 1);
+      int index = value.indexOf("\n");
+      while ( index != -1 ) {            
+        String sub = value.substring(0,index);
+        value = value.substring(index + 1);
 
+        int cursor_x = get_cursor_x(font,sub,position);
+        cursor_y += FONT_FACTOR * size;
+        writeln(font,sub.c_str(),&cursor_x,&cursor_y,framebuffer);             
+        cursor_y += LINE_PADDING;
+        index = value.indexOf("\n");
+      }
+    
       int cursor_x = get_cursor_x(font,value,position);
       cursor_y += FONT_FACTOR * size;
-      writeln(font,sub.c_str(),&cursor_x,&cursor_y,framebuffer);             
+      writeln(font,value.c_str(),&cursor_x,&cursor_y,framebuffer); 
+
+      cursor_y += LINE_PADDING;
     }
-    
-    int cursor_x = get_cursor_x(font,value,position);
-    cursor_y += FONT_FACTOR * size;
-    writeln(font,value.c_str(),&cursor_x,&cursor_y,framebuffer); 
-      
     cursor_y += AREA_PADDING;
   }
   
   epd_draw_grayscale_image(epd_full_screen(), framebuffer);
-  epd_poweroff();
-  epd_poweroff_all();
+  //epd_poweroff();
+  //epd_poweroff_all();
  }
 
 

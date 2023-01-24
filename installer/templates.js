@@ -34,7 +34,7 @@ const templates = Object.freeze({
                 "apply": "text"
             },
             {
-                "name": "updatefrequency",
+                "name": "updateinterval",
                 "type": "ACInput",
                 "value": "",
                 "label": "Screen update frequency in ms",
