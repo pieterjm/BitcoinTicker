@@ -9,47 +9,71 @@
   <body>
     <h1>BitcoinTicker configuration</h1>
 
+    
     <div class="container border">
       <h2>Serial port</h2>
-      <input type="number" name="baud-rate" id="baud-rate" value="115200" placeholder="Baud Rate" />
-      
-      <button onclick="connectToDevice(this)" class="ud-main-btn ud-white-btn" >
-	Connect
-      </button>
+      <div class="row">
+        <div class="col-md-6">
+	  <input type="number" name="baud-rate" id="baud-rate" value="115200" placeholder="Baud Rate" />
+	</div>
+        <div class="col-md-6">
+	  <button onclick="connectToDevice(this)" class="ud-main-btn ud-white-btn" >
+	    Connect
+	  </button>
+	</div>
     </div>
-
-
+      
+     
     <div class="container border">
       <h2>Upload/Download configuration</h2>
-      <input type="text" name="config-file-path" id="config-file-path" placeholder="Config File Path (on device)" />
-      <button type="button" onclick="downloadFromDevice(this)" class="ud-main-btn ud-white-btn">
-	Download from device
-      </button>	    
-      <button type="button" onclick="saveToDevice(this)" class="ud-main-btn ud-white-btn">
-	Save to Device
-      </button>
-      <div id="progress-bar-top" class="progress mb-3 d-none">
-        <div id="progress-bar-value" class="progress-bar" style="width:50%"></div>
-      </div>
+       <div class="row">
+         <div class="col-md-4">
+	   <input type="text" name="config-file-path" id="config-file-path" placeholder="Config File Path (on device)" />
+	 </div>
+         <div class="col-md-4">
+	   <button type="button" onclick="downloadFromDevice(this)" class="ud-main-btn ud-white-btn">
+	     Download from device
+	   </button>
+	 </div>
+         <div class="col-md-4">	 	   
+	   <button type="button" onclick="saveToDevice(this)" class="ud-main-btn ud-white-btn">
+	     Save to Device
+	   </button>
+	 </div>
+       </div>
+       <div class="row">
+	 <div class="col-md-12">	 	   
+	   <div id="progress-bar-top" class="progress mb-3 d-none">
+             <div id="progress-bar-value" class="progress-bar" style="width:50%"></div>
+	   </div>
+	 </div>
+       </div>
     </div>
-
     <div class="container border">
-      <h2>Modify configuration</h2>
-      <input id="display-mode" onclick="onDisplayModeChamge()" type="checkbox">
+      <div class="row">
+	<div class="col-md-12">	 	   	  
+	  <h2>Modify configuration</h2>
+	</div>
+      </div>
+      <div class="row">	
+	<div class="col-md-6">	 	   	  
+          <select onchange="updateTemplate(this)" class="ud-main-btn">
+            <option value="" disabled selected>Select Template</option>
+            <option value="elements">BitcoinTicker Config</option>                                                
+	  </select>
+	</div>
+	<div class="col-md-3">	 	   	  
+	  <button type="button" onclick="document.getElementById('config-file-selector').click();" class="ud-main-btn float-end">
+            Upload Config File
+	  </button>
+	  <input type="file" id="config-file-selector" style="display:none;" class="ud-main-btn ud-white-btn" />
+	</div>
+	<div class="col-md-3">
+	  Edit JSON: <input id="display-mode" onclick="onDisplayModeChamge()" type="checkbox">
+	</div>
+      </div>
 
-      <select onchange="updateTemplate(this)" class="ud-main-btn">
-        <option value="" disabled selected>Select Template</option>
-        <option value="elements">BitcoinTicker Config</option>                                                
-      </select>
-
-      <button onclick="document.getElementById('config-file-selector').click();"
-              class="ud-main-btn float-end">
-        Upload Config File
-      </button>
-
-      <input type="file" id="config-file-selector" style="display:none;"
-             class="ud-main-btn ud-white-btn" />
-
+      
       <div id="config-file-fields-group">
         <br /><br />
         <h3 class="ud-feature-title">No Config Data</h3>
