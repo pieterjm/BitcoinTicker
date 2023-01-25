@@ -11,7 +11,11 @@
 
     
     <div class="container border">
-      <h2>Serial port</h2>
+      <div class="row">
+        <div class="col-md-12">
+	  <h2>Serial port</h2>
+	</div>
+      </div>
       <div class="row">
         <div class="col-md-12">
 	  <input type="number" name="baud-rate" id="baud-rate" value="115200" placeholder="Baud Rate" />
@@ -23,27 +27,31 @@
       
      
     <div class="container border">
-      <h2>Upload/Download configuration</h2>
-       <div class="row">
-         <div class="col-md-6">
-	   <input type="text" name="config-file-path" id="config-file-path" placeholder="Config File Path (on device)" />
-	 </div>
-         <div class="col-md-6">
-	   <button type="button" onclick="downloadFromDevice(this)" class="ud-main-btn ud-white-btn">
-	     Download from device
-	   </button>
-	   <button type="button" onclick="saveToDevice(this)" class="ud-main-btn ud-white-btn">
-	     Save to Device
-	   </button>
-	 </div>
-       </div>
-       <div class="row">
-	 <div class="col-md-12">	 	   
-	   <div id="progress-bar-top" class="progress mb-3 d-none">
-             <div id="progress-bar-value" class="progress-bar" style="width:50%"></div>
-	   </div>
-	 </div>
-       </div>
+      <div class="row">
+	<div class="col-md-12">
+	  <h2>Upload/Download configuration</h2>
+	</div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+	  <input type="text" name="config-file-path" id="config-file-path" placeholder="Config File Path (on device)" />
+	</div>
+        <div class="col-md-6">
+	  <button type="button" onclick="downloadFromDevice(this)" class="ud-main-btn ud-white-btn">
+	    Download from device
+	  </button>
+	  <button type="button" onclick="saveToDevice(this)" class="ud-main-btn ud-white-btn">
+	    Save to Device
+	  </button>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col-md-12">	 	   
+	  <div id="progress-bar-top" class="progress mb-3 d-none">
+            <div id="progress-bar-value" class="progress-bar" style="width:50%"></div>
+	  </div>
+	</div>
+      </div>
     </div>
     <div class="container border">
       <div class="row">
@@ -64,7 +72,7 @@
 	  Edit JSON: <input id="display-mode" onclick="onDisplayModeChamge()" type="checkbox">
 	</div>
       </div>
-
+      
       
       <div id="config-file-fields-group">
         <br /><br />
