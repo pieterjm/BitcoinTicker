@@ -10,6 +10,7 @@
     <h1>BitcoinTicker configuration</h1>
 
     <div class="container border">
+      <h2>Serial port</h2>
       <input type="number" name="baud-rate" id="baud-rate" value="115200" placeholder="Baud Rate" />
       
       <button onclick="connectToDevice(this)" class="ud-main-btn ud-white-btn" >
@@ -19,16 +20,21 @@
 
 
     <div class="container border">
+      <h2>Upload/Download configuration</h2>
       <input type="text" name="config-file-path" id="config-file-path" placeholder="Config File Path (on device)" />
-
-      <input type="button" value="Download from Device" onclick="downloadFromDevice(this)" class="ud-main-btn ud-white-btn" />
-	    
-      <button onclick="saveToDevice(this)" class="ud-main-btn ud-white-btn">Save to Device</button>
-
+      <button type="button" onclick="downloadFromDevice(this)" class="ud-main-btn ud-white-btn">
+	Download from device
+      </button>	    
+      <button type="button" onclick="saveToDevice(this)" class="ud-main-btn ud-white-btn">
+	Save to Device
+      </button>
       <div id="progress-bar-top" class="progress mb-3 d-none">
         <div id="progress-bar-value" class="progress-bar" style="width:50%"></div>
       </div>
+    </div>
 
+    <div class="container border">
+      <h2>Modify configuration</h2>
       <input id="display-mode" onclick="onDisplayModeChamge()" type="checkbox">
 
       <select onchange="updateTemplate(this)" class="ud-main-btn">
