@@ -7,8 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
-    <h1>BitcoinTicker configuration</h1>
-
+    <div class="container border">
+      <h1>BitcoinTicker configuration</h1>
+    </div>
     
     <div class="container border">
       <div class="row">
@@ -23,8 +24,8 @@
 	    Connect
 	  </button>
 	</div>
+      </div>
     </div>
-      
      
     <div class="container border">
       <div class="row">
@@ -33,10 +34,8 @@
 	</div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
 	  <input type="text" name="config-file-path" id="config-file-path" placeholder="Config File Path (on device)" />
-	</div>
-        <div class="col-md-6">
 	  <button type="button" onclick="downloadFromDevice(this)" class="ud-main-btn ud-white-btn">
 	    Download from device
 	  </button>
@@ -65,11 +64,11 @@
             <option value="" disabled selected>Select Template</option>
             <option value="elements">BitcoinTicker Config</option>                                                
 	  </select>
-	  <button type="button" onclick="document.getElementById('config-file-selector').click();" class="ud-main-btn float-end">
+	  Edit JSON: <input id="display-mode" onclick="onDisplayModeChamge()" type="checkbox">
+	  <button type="button" onclick="document.getElementById('config-file-selector').click();" class="ud-main-btn ud-white-button">
             Upload Config File
 	  </button>
 	  <input type="file" id="config-file-selector" style="display:none;" class="ud-main-btn ud-white-btn" />
-	  Edit JSON: <input id="display-mode" onclick="onDisplayModeChamge()" type="checkbox">
 	</div>
       </div>
       
@@ -89,15 +88,13 @@
 	
       </div>
 
-      <div class="row">
-	<div class="col-md-12">
-	  <div id="config-file-text-group" style="display:none">
-            <div class="ud-form-group">
-              <label for="config-file-text">Config File Text Content</label>
-              <textarea name="config-file-text" id="config-file-text" rows="15"
-			cols="200" placeholder="Add a new entry of the form 'key=value'"
-			style="border-top: 2px solid #f1f1f1;"></textarea>
-            </div>
+      <div id="config-file-text-group" style="display:none">
+	<div class="row">
+	  <div class="col-md-12">
+            <label for="config-file-text">Config File Text Content</label>
+            <textarea name="config-file-text" id="config-file-text" rows="15"
+		      cols="200" placeholder="Add a new entry of the form 'key=value'"
+		      style="border-top: 2px solid #f1f1f1;"></textarea>
 	  </div>
 	</div>
       </div>

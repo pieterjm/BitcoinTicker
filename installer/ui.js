@@ -100,23 +100,23 @@ function propsToField(text = '') {
 
 function createConfigField(configField) {
     const elements = createConfigElement(configField)
-    return `<div class="ud-form-group">${elements}</div>`
+    return `<div class="row">${elements}</div>`
 }
 
 function createConfigElement(configField) {
     if (configField.type === 'ACInput') {
-        return `<label for="${configField.name}">${configField.label}</label>
+        return `<div class="row"><div class="col-md-12"><label for="${configField.name}"><b>${configField.label}</b></label></div></div><div class="row"><div class="col-md-12">
                         <input type="${configField.apply}" 
                             name="${configField.name}" 
                             id="${configField.name}" 
                             value="${configField.value || ''}" 
                             placeholder="${configField.placeholder || ''}" 
-                            class="serial-config-input-field" />`
+                            /></div></div>`
     }
     if (configField.type === 'ACText' && configField.value) {
         return `<h4 class="ud-feature-title">${configField.value}</h4>`
     }
-    return ""
+    return "Unknown configField.type"
 }
 
 function onDisplayModeChamge() {
@@ -124,8 +124,8 @@ function onDisplayModeChamge() {
     if (showText === false) {
         updateConfigFormat(configText.value)
         updateInputFields(configText.value)
-        document.getElementById("config-file-fields-group").style.display = "block";
-        document.getElementById("config-file-text-group").style.display = "none";
+        //document.getElementById("config-file-fields-group").style.display = "block";
+        //document.getElementById("config-file-text-group").style.display = "none";
     } else {
         updateConfigTextFromInputFields()
         document.getElementById("config-file-fields-group").style.display = "none";
