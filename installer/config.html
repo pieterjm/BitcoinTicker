@@ -13,10 +13,8 @@
     <div class="container border">
       <h2>Serial port</h2>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
 	  <input type="number" name="baud-rate" id="baud-rate" value="115200" placeholder="Baud Rate" />
-	</div>
-        <div class="col-md-6">
 	  <button onclick="connectToDevice(this)" class="ud-main-btn ud-white-btn" >
 	    Connect
 	  </button>
@@ -27,15 +25,13 @@
     <div class="container border">
       <h2>Upload/Download configuration</h2>
        <div class="row">
-         <div class="col-md-4">
+         <div class="col-md-6">
 	   <input type="text" name="config-file-path" id="config-file-path" placeholder="Config File Path (on device)" />
 	 </div>
-         <div class="col-md-4">
+         <div class="col-md-6">
 	   <button type="button" onclick="downloadFromDevice(this)" class="ud-main-btn ud-white-btn">
 	     Download from device
 	   </button>
-	 </div>
-         <div class="col-md-4">	 	   
 	   <button type="button" onclick="saveToDevice(this)" class="ud-main-btn ud-white-btn">
 	     Save to Device
 	   </button>
@@ -56,19 +52,15 @@
 	</div>
       </div>
       <div class="row">	
-	<div class="col-md-6">	 	   	  
+	<div class="col-md-12">	 	   	  
           <select onchange="updateTemplate(this)" class="ud-main-btn">
             <option value="" disabled selected>Select Template</option>
             <option value="elements">BitcoinTicker Config</option>                                                
 	  </select>
-	</div>
-	<div class="col-md-3">	 	   	  
 	  <button type="button" onclick="document.getElementById('config-file-selector').click();" class="ud-main-btn float-end">
             Upload Config File
 	  </button>
 	  <input type="file" id="config-file-selector" style="display:none;" class="ud-main-btn ud-white-btn" />
-	</div>
-	<div class="col-md-3">
 	  Edit JSON: <input id="display-mode" onclick="onDisplayModeChamge()" type="checkbox">
 	</div>
       </div>
@@ -88,14 +80,18 @@
         </ul>
 	
       </div>
-      
-      <div id="config-file-text-group" style="display:none">
-        <div class="ud-form-group">
-          <label for="config-file-text">Config File Text Content</label>
-          <textarea name="config-file-text" id="config-file-text" rows="15"
-                    cols="200" placeholder="Add a new entry of the form 'key=value'"
-                    style="border-top: 2px solid #f1f1f1;"></textarea>
-        </div>
+
+      <div class="row">
+	<div class="col-md-12">
+	  <div id="config-file-text-group" style="display:none">
+            <div class="ud-form-group">
+              <label for="config-file-text">Config File Text Content</label>
+              <textarea name="config-file-text" id="config-file-text" rows="15"
+			cols="200" placeholder="Add a new entry of the form 'key=value'"
+			style="border-top: 2px solid #f1f1f1;"></textarea>
+            </div>
+	  </div>
+	</div>
       </div>
     </div>
       
