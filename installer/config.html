@@ -92,21 +92,13 @@
         <div class="row mb-3 mt-3 ud-hero-buttons">
           <div class="col-4">
           </div>
-          <div class="col-6">
-            <div class="ud-login-form float-end bitcoinswitch-config-div d-none">
-              <div class="ud-form-group">
-                <label class="ud-label-white" for="baud-rate">Baud Rate:</label>
-                <input type="number" name="baud-rate" id="baud-rate" value="115200"
-                       placeholder="Baud Rate" />
-              </div>
-            </div>
-          </div>
-          <div class="col-2">
-            <input type="button" value="Connect" onclick="connectToDevice(this)"
+
+
+	  <input type="number" name="baud-rate" id="baud-rate" value="115200" placeholder="Baud Rate" />
+          
+           <input type="button" value="Connect" onclick="connectToDevice(this)"
                    class="ud-main-btn ud-white-btn float-end  bitcoinswitch-config-div d-none" />
-          </div>
-        </div>
-        <hr class="mt-2 mb-3 bitcoinswitch-config-div d-none" />
+          
 	
         <div class="row ud-hero-buttons bitcoinswitch-config-div d-none">
           <div class="col-5">
@@ -198,8 +190,11 @@
 	
       </div>
       
-      
-      
+     <button id="show-modal-button" type="button" class="btn btn-primary d-none" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+    <p id="modal-text"></p>
 
     <script src="templates.js"></script>
     <script src="ui.js"></script>

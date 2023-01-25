@@ -335,7 +335,7 @@ void setup()
   if ( preferences.isKey(CONFIG_UPDATEINTERVAL) == false ) {
     displayHelp("Update Interval is missing from config");
   }
-  timer.every(preferences.getInt(CONFIG_UPDATEINTERVAL),update_display);
+  timer.every(preferences.getInt(CONFIG_UPDATEINTERVAL,30000),update_display);
 }
 
 
